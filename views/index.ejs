@@ -12,7 +12,6 @@
 <header>
   <nav>
   <div class="nav-logo">
-    <?xml version="1.0" encoding="UTF-8" standalone="no"?>
     <svg
        xmlns:dc="http://purl.org/dc/elements/1.1/"
        xmlns:cc="http://creativecommons.org/ns#"
@@ -106,11 +105,23 @@
 </header>
 
 
-<ul class="post"> <% for (var i = 0 ; i < posts.length ; i++){ %>
+<section class="content">
+  <div class="content-wrapper">
+     <div class="content-item">
 
-  <li><a href="/post/<%= i %>"><%= posts[i].title%></a><p><%= posts[i].message%></p></li>
-   <% } %>
-</ul>
+     </div>
+     <div class="sidebar">
+       <div class="sidebar-wrapper">
+         <ul class="sidebar-list"> <% for (var i = 0 ; i < posts.length ; i++){ %>
+            <li><a href="/post/<%= i %>"><%= posts[i].title%></a></li>
+         <% } %>
+         </ul>
+       </div>
+     </div>
+  </div>
+</section>
+
+
 
 
 </body>

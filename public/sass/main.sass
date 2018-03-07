@@ -7,7 +7,8 @@ body
  margin: 0
  position: relative
 
-$green: darkred
+$darkred: darkred
+$green: #2ECC71
 
 
 header
@@ -20,24 +21,72 @@ header
   justify-content: space-between
   align-items: center
   .nav-list
-   width: 30%
-   justify-content: space-between
+   width: 100%
+   justify-content: flex-end
    display: flex
    color: #FFF
    margin: 0
    list-style: none
    li
+    margin-right: 60px
     a
+     display: block
+     padding: 5px
      text-decoration: none
      font-size: 20px
      color: #FFF
      &:hover
       border-bottom: 1px solid  white
 
-#svg8
- color: #FFF
+.content
+ padding-top: 100px
+ min-height: 900px
+ background: url('../img/darkness.png')
+ animation: 10s  backland linear infinite
+ .content-wrapper
+  display: grid
+  grid-template-columns: repeat(12 , 1fr)
+  max-width: 1200px
+  margin: 0 auto
+  background: rgba(255 ,255 ,255 ,.85)
+  min-height: 200px
+  border-radius: 10px
+  box-shadow: 0px 0px 20px $green
+  .content-item
+   grid-column: 1/9
+  .sidebar
+   border-radius: 0 10px 10px 0
+   background: #FFF
+   grid-column: 9 / 13
+   .sidebar-wrapper
+    .sidebar-list
+     width: 100%
+     font-size: 0
+     margin: 0
+     list-style: none
+     padding: 0
+     li
+      font-size: 20px
+      a
+       border: 1px solid black
+       text-align: center
+       text-decoration: none
+       display: block
+       color: black
+       padding: 20px
+      .sidebar-list-item-active
+       background: blue
+       color: #FFF
+       &:hover
+        border-bottom: 1px solid blue
 
 
+
+@keyframes backland
+ 0%
+  background-position: 0px 0
+ 100%
+  background-position: 1000px 0
 
 .form
  display: flex
@@ -67,7 +116,7 @@ header
   padding: 10px
   &:focus
    outline: none
-   box-shadow: 0px 0px 20px $green
+   box-shadow: 0px 0px 20px $darkred
  textarea
   border: none
   border-radius: 10px
@@ -75,7 +124,7 @@ header
   padding: 10px
   &:focus
    outline: none
-   box-shadow: 0px 0px 20px $green
+   box-shadow: 0px 0px 20px $darkred
  .delete
   margin-top: 20px
   display: flex

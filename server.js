@@ -4,10 +4,13 @@ var path = require('path');
 var fs = require('fs');
 var app = express();
 
-
 app.set('view engine' , 'ejs');
 
-app.use(express.static(__dirname + '/public'));
+app.use(express.static('public'));
+
+app.use( '/post' , express.static('public'));
+
+
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }) );
@@ -59,7 +62,7 @@ app.post('/admin'  ,function (req ,res)  {
 
 app.get ('/post/:id' , function (req ,res)  {
 
- res.render ('template_posts' , { posts : posts , id : req.params.id});
+ res.render ('template_posts' , { posts : posts , post_id : req.params.id});
 
 })
 

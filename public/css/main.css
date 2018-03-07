@@ -18,21 +18,69 @@ header {
     justify-content: space-between;
     align-items: center; }
     header nav .nav-list {
-      width: 30%;
-      justify-content: space-between;
+      width: 100%;
+      justify-content: flex-end;
       display: flex;
       color: #FFF;
       margin: 0;
       list-style: none; }
-      header nav .nav-list li a {
-        text-decoration: none;
-        font-size: 20px;
-        color: #FFF; }
-        header nav .nav-list li a:hover {
-          border-bottom: 1px solid  white; }
+      header nav .nav-list li {
+        margin-right: 60px; }
+        header nav .nav-list li a {
+          display: block;
+          padding: 5px;
+          text-decoration: none;
+          font-size: 20px;
+          color: #FFF; }
+          header nav .nav-list li a:hover {
+            border-bottom: 1px solid  white; }
 
-#svg8 {
-  color: #FFF; }
+.content {
+  padding-top: 100px;
+  min-height: 900px;
+  background: url("../img/darkness.png");
+  animation: 10s  backland linear infinite; }
+  .content .content-wrapper {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    max-width: 1200px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.85);
+    min-height: 200px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px #2ECC71; }
+    .content .content-wrapper .content-item {
+      grid-column: 1/9; }
+    .content .content-wrapper .sidebar {
+      border-radius: 0 10px 10px 0;
+      background: #FFF;
+      grid-column: 9 / 13; }
+      .content .content-wrapper .sidebar .sidebar-wrapper .sidebar-list {
+        width: 100%;
+        font-size: 0;
+        margin: 0;
+        list-style: none;
+        padding: 0; }
+        .content .content-wrapper .sidebar .sidebar-wrapper .sidebar-list li {
+          font-size: 20px; }
+          .content .content-wrapper .sidebar .sidebar-wrapper .sidebar-list li a {
+            border: 1px solid black;
+            text-align: center;
+            text-decoration: none;
+            display: block;
+            color: black;
+            padding: 20px; }
+          .content .content-wrapper .sidebar .sidebar-wrapper .sidebar-list li .sidebar-list-item-active {
+            background: blue;
+            color: #FFF; }
+            .content .content-wrapper .sidebar .sidebar-wrapper .sidebar-list li .sidebar-list-item-active:hover {
+              border-bottom: 1px solid blue; }
+
+@keyframes backland {
+  0% {
+    background-position: 0px 0; }
+  100% {
+    background-position: 1000px 0; } }
 
 .form {
   display: flex;

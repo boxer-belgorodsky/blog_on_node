@@ -1,3 +1,11 @@
+
+@font-face
+ font-family: 'Legothick'
+ src:   url('../font/Legothick.woff') format('woff') ,  url('../font/Legothick.ttf') format('truetype') , url('../font/Legothick.eot?') format('eot') , url("../font/Legothick.svg#Legothick") format("svg")
+
+
+
+
 html
  height: 100%
 body
@@ -7,9 +15,11 @@ body
  margin: 0
  position: relative
 
+$blue: #4dadf7
 $darkred: darkred
 $green: #2ECC71
-
+$awesome: 'FontAwesome'
+$purple: #825794
 
 header
  background: #2C3E50
@@ -36,7 +46,224 @@ header
      font-size: 20px
      color: #FFF
      &:hover
-      border-bottom: 1px solid  white
+       border-bottom: 1px solid  white
+  .nav-form
+   .nav-search
+    padding: 10px
+    border-radius: 5px
+    border: none
+   .was-found
+    padding: 20px
+    border: 1px solid black
+    background: #FFF
+    border-radius: 5px
+    display: none
+    position: absolute
+    top: 100px
+    a
+     display: block
+
+div[data-remodal-id="modal_check_in"].active
+ .sign-in-wrapper
+  left: -100%
+  z-index: -100
+  visibility: hidden
+  transition: 1s
+ .to-register-wrapper
+  visibility: visible
+  transition: 1s
+  left: 0
+
+div[data-remodal-id="modal_check_in"]
+ overflow: hidden
+ min-height: 450px
+ background: rgba(255 ,255 , 255,.9)
+ color: white
+ position: relative
+ .back.back-active
+  visibility: visible
+  opacity: 1
+  transition: .1s visibility 1s , .6s opacity 1s
+ .back
+  transition: .1s visibility  , .6s opacity
+  visibility: hidden
+  opacity: 0
+  background: transparent
+  border: none
+  left: 0
+  top: 0
+  padding: 10px
+  padding-left: 15px
+  font-size: 17px
+  position: absolute
+  color: #777
+  text-shadow: -1px -1px 1px rgba(0 , 0 ,0 ,.2)
+  &:focus
+   outline: none
+  svg
+   margin-right: 5px
+   transition: .4s
+  &:hover
+   cursor: pointer
+   svg
+    transform: translateX(-5px)
+
+ button[data-remodal-action="close"]
+  left: calc(100% - 35px)
+ .sign-in-wrapper
+  display: block
+  transition: 1s
+  top: 50%
+  transform: translateY(-50%)
+  position: absolute
+  width: 100%
+  left: 0
+  .sign-in
+   color: #777
+   width: 100%
+   display: flex
+   align-items: center
+   flex-direction: column
+   .sing-in-wrapper-input
+    align-items: center
+    margin-bottom: 20px
+    width: 65%
+    display: flex
+    justify-content: space-between
+    input
+     color: rgba(0 , 0, 0, .7)
+     width: 50%
+     padding: 10px
+     box-shadow: inset 0px 2px 2px rgba(0 , 0 , 0 , .1)
+     border: 2px solid rgba(0 , 0 , 0, .125)
+     border-radius: 4px
+     padding: 15px
+     font-size: 20px
+     transition: .5s
+     &::-webkit-input-placeholder
+      color: rgba(0 ,0 ,0 , .3)
+     &:focus
+      outline: none
+      border: 2px solid darken(#4dadf7,15%)
+      box-shadow: 0px 0px 8px $blue
+    label
+     display: flex
+     height: 30px
+     line-height: 30px
+     &:hover
+      cursor: pointer
+     &::before
+      margin-right: 10px
+    label[for="user-email-sign"]
+     &::before
+      font-family: $awesome
+      content: "\f0e0"
+      display: block
+    label[for="user-password-sign"]
+     &::before
+      font-family: $awesome
+      content: "\f084"
+      display: block
+    button
+     padding: 15px 25px
+     border: 3px solid $purple
+     font-size: 22px
+     text-shadow: -1px -1px 1px  $purple
+     border-radius: 3px
+     color: $purple
+     display: flex
+     background-color: rgba(130,87,148,0.1);
+     transition: .4s
+     &:hover
+      cursor: pointer
+      color: #FFF
+      background: $purple
+    button[type="button"]
+     svg
+      font-size: 24px
+      margin-left: 10px
+      transition: transform .5s
+     &:hover
+      svg
+       transform: translateX(10px)
+    button[type="submit"]
+     svg
+      margin-right: 10px
+
+ .to-register-wrapper
+  top: 50%
+  transform: translateY(-50%)
+  transition: 1s
+  visibility: hidden
+  width: 100%
+  left: 100%
+  position: absolute
+  .to-register
+   align-items: center
+   display: flex
+   flex-direction: column
+   .wrapper-input-to-register
+    width: 65%
+    display: flex
+    justify-content: flex-start
+    position: relative
+    margin-bottom: 15px
+    input
+     box-shadow: inset 0px 5px 4px rgba( 0 , 0 , 0 , .1)
+     width: 100%
+     padding: 30px 20px 10px
+     border-radius: 5px
+     border: 2px solid rgba(0 , 0 , 0, .125)
+     &:focus
+      box-shadow: 0px 0px 8px black
+      outline: none
+      & + label
+       font-size: 15px
+       top: 0
+       transform: translateY(5px)
+    label
+     transition: .5s
+     height: 20px
+     line-height: 20px
+     left: 20px
+     top: 50%
+     transform: translateY(-50%)
+     color: rgba(0 , 0 , 0 , .3)
+     position: absolute
+   button[name="to-register-btn"]
+    padding: 20px
+    background: darkred
+    color: #FFF
+    border-radius: 5px
+    border: none
+    font-size: 25px
+    width: 50%
+    margin-top: 25px
+    position: relative
+    overflow: hidden
+    &:hover
+     cursor: pointer
+     box-shadow: 0px 0px 5px black
+     text-shadow: 0px 0px 10px white
+     transition: text-shadow 1s
+     &::before
+      top: 100%
+      transition: 1s
+    &:active
+     box-shadow: inset 0px 0px 15px black
+    &:focus
+     outline: none
+    &::before
+     content: ""
+     display: block
+     position: absolute
+     width: 100%
+     height: 100%
+     background: rgba(0 , 0, 0 , .3)
+     left: 0
+     top: -100%
+
+
 
 .content
  padding-top: 100px
@@ -53,7 +280,10 @@ header
   border-radius: 10px
   box-shadow: 0px 0px 20px $green
   .content-item
+   padding: 20px
    grid-column: 1/9
+   .title-post
+    margin: 0
   .sidebar
    border-radius: 0 10px 10px 0
    background: #FFF
@@ -88,62 +318,102 @@ header
  100%
   background-position: 1000px 0
 
-.form
- display: flex
- flex-direction: column
- background: rgba(0 , 0 , 0 , .7)
- padding: 20px
+
+
+
+// admin style
+
+.perspective-form
  width: 300px
  margin: 200px auto
- box-shadow: 0px 0px 10px black
- border-radius: 10px
- button.submit-post
-  font-weight: bold
-  margin-top: 20px
-  background: darkred
-  padding: 10px 20px
-  color: #FFF
-  border: none
-  border-radius: 10px
-  width: 200px
- label
-  margin: 10px 0
-  color: #FFF
- input
-  border-radius: 10px
-  border: none
-  box-shadow: inset 0px 5px 2px rgba(0 , 0 , 0 , .15)
-  padding: 10px
-  &:focus
-   outline: none
-   box-shadow: 0px 0px 20px $darkred
- textarea
-  border: none
-  border-radius: 10px
-  box-shadow: inset 0px 5px 2px rgba(0 , 0 , 0 , .15)
-  padding: 10px
-  &:focus
-   outline: none
-   box-shadow: 0px 0px 20px $darkred
- .delete
-  margin-top: 20px
+ perspective: 1000px
+ .form
+  transform-style: preserve-3d;
+  position: relative
+  justify-content: center
   display: flex
-  min-height: 25px
-  button
-   font-weight: bold
-   background: darkred
-   border: none
-   color: #FFF
-   padding: 7px 12px
-   border-radius: 10px 0 0 10px
-  select
-   border: none
-   border-radius: 0 10px 10px 0
+  flex-direction: column
+  background: rgba(0 , 0 , 0 , .7)
+  padding: 20px
+  box-shadow: 0px 0px 10px black
+  border-radius: 10px
+  transition: 1s
+  .adminka
+   transform:  rotateY(180deg)
+   transition: 1s
+   backface-visibility: hidden;
+   display: flex
+   flex-direction: column
+   button.submit-post
+    font-weight: bold
+    margin-top: 20px
+    background: darkred
+    padding: 10px 20px
+    color: #FFF
+    border: none
+    border-radius: 10px
+    width: 100%
+    &:hover
+     cursor: pointer
+   label
+    margin: 10px 0
+    color: #FFF
+   input
+    border-radius: 10px
+    border: none
+    box-shadow: inset 0px 5px 2px rgba(0 , 0 , 0 , .15)
+    padding: 10px
+    &:focus
+     outline: none
+     box-shadow: 0px 0px 20px $darkred
+   textarea
+    border: none
+    border-radius: 10px
+    box-shadow: inset 0px 5px 2px rgba(0 , 0 , 0 , .15)
+    padding: 10px
+    &:focus
+     outline: none
+     box-shadow: 0px 0px 20px $darkred
+   .control
+    margin-top: 20px
+    display: flex
+    min-height: 25px
+    button
+     width: 45%
+     font-weight: bold
+     background: darkred
+     border: none
+     color: #FFF
+     padding: 7px 12px
+     border-radius: 10px 0 0 10px
+     &:hover
+      cursor: pointer
+    button[name="apply"]
+     border-radius: 10px
+     width: 35%
+     margin-left: auto
+     background: $green
+    select
+     border: none
+     border-radius: 0 10px 10px 0
+  .authorization
+   position: absolute
+   top: 50%
+   padding: 20px
+   width: calc(100% - 40px)
+   left: 0
+   display: flex
+   flex-direction: column
+   transition: 1s
+   transform: translateY(-50%)
+   backface-visibility: hidden;
 
-.posts
- list-style: none
- padding: 50px
- background: #ccc
+.perspective-form-validate
+ .form
+  transform: rotateY(180deg)
+
+
+
 
 
 

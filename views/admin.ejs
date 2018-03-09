@@ -12,21 +12,64 @@
 
 <body>
 
-<form method="post" class="form">
-  <label for="title">Заголовок статьи</label>
-  <input type="text" name="title">
-  <label for="message">Заголовок статьи</label>
-  <textarea name="message"></textarea>
-  <button type="submit" class="submit-post">Сделать пост</button>
-  <div  class="delete">
-    <button name="delete" value="yes">удалить</button>
-    <select  name="delete_select">
-    <% for( var i = 0 ; i < posts.length ; i++) {%>
-    <option><%= i%></option>
-    <% } %>
-    </select>
-  </div>
-</form>
+
+
+<div class="perspective-form">
+  <form method="post" class="form">
+    <div class="adminka">
+      <label for="title">Заголовок статьи</label>
+      <% if(id !== false) {%>
+      <input type="text" name="title"  value="<%= posts[id].title %>">
+      <% } else {%>
+      <input type="text" name="title"  >
+      <% } %>
+      <label for="message">Заголовок статьи</label>
+      <% if(id !== false) {%>
+      <textarea name="message" ><%= posts[id].message %></textarea>
+      <% } else {%>
+      <textarea name="message"></textarea>
+      <% } %>
+      <button type="submit" class="submit-post">Сделать пост</button>
+      <div  class="control">
+        <% if(id !== false) {%>
+          <button name="edit" value="<%= id %>">редактировать</button>
+          <select  name="edit_select" value="<%= id %>">
+          <% for( var i = 0 ; i < posts.length ; i++) {%>
+            <% if( i == id ) {%>
+            <option selected><%= i%></option>
+            <% } else {%>
+            <option ><%= i%></option>
+            <% } %>
+          <% } %>
+          </select>
+          <button type="submit" name="apply">применить</button>
+        <% } else {%>
+          <button name="edit" value="yes">редактировать</button>
+          <select  name="edit_select">
+          <% for( var i = 0 ; i < posts.length ; i++) {%>
+          <option><%= i%></option>
+          <% } %>
+          </select>
+        <% } %>
+      </div>
+      <div  class="control">
+        <button name="delete" value="yes">удалить</button>
+        <select  name="delete_select">
+        <% for( var i = 0 ; i < posts.length ; i++) {%>
+        <option><%= i%></option>
+        <% } %>
+        </select>
+      </div>
+    </div>
+    <div class="authorization">
+     <label></label>
+     <input type="" name="">
+     <label></label>
+     <input type="" name="">
+     <button name="authorization" type="submit">Авторизоваться</button>
+    </div>
+  </form>
+</div>
 
 
 

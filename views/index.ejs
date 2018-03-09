@@ -4,8 +4,10 @@
   <meta charset="UTF-8">
   <title>Document</title>
   <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
   <link rel="stylesheet" type="text/css" href="css/main.css">
+  <link rel="stylesheet" type="text/css" href="css/remodal.css">
+  <link rel="stylesheet" type="text/css" href="css/remodal-default-theme.css">
 </head>
 <body>
 
@@ -52,7 +54,7 @@
              style="stroke-width:0.26458332" /></text>
         <text
            xml:space="preserve"
-           style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.58333302px;line-height:1.25;font-family:Legothick;-inkscape-font-specification:'Legothick, Italic';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#fff;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+           style="text-transform:uppercase;font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.58333302px;line-height:1.25;font-family:Legothick;-inkscape-font-specification:'Legothick, Italic';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#fff;fill-opacity:1;stroke:none;stroke-width:0.26458332"
            x="0.28348172"
            y="294.35413"
            id="text4491"><tspan
@@ -93,19 +95,22 @@
              style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;font-family:'PT Sans';-inkscape-font-specification:'PT Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;stroke-width:0.26458332">VT</tspan></text>
       </g>
     </svg>
-
   </div>
   <ul class="nav-list">
     <li><a href="">news</a></li>
     <li><a href="">about us</a></li>
     <li><a href="">subscribe</a></li>
+    <li><a data-remodal-target="modal_check_in" >sign in</a></li>
   </ul>
-  <form class="nav-form"></form>
+  <form class="nav-form">
+    <input type="" placeholder="search"  class="nav-search" name="">
+    <div class="was-found"></div>
+  </form>
   </nav>
 </header>
 
 
-<section class="content">
+<section class="content" >
   <div class="content-wrapper">
      <div class="content-item">
 
@@ -121,6 +126,147 @@
   </div>
 </section>
 
+
+
+<div class="remodal" data-remodal-id="modal_check_in" data-remodal-options="hashTracking: false, closeOnOutsideClick: true">
+  <button class="back"><i class="fas fa-long-arrow-alt-left"></i>back</button>
+  <button data-remodal-action="close" class="remodal-close"></button>
+  <div class="sign-in-wrapper">
+    <form class="sign-in">
+      <div class="sing-in-wrapper-input">
+        <label for="user-email-sign">email</label>
+        <input  placeholder="email"  type="email" id="user-email-sign" name="user-email-sign">
+      </div>
+      <div class="sing-in-wrapper-input">
+        <label for="user-password-sign">password</label>
+        <input placeholder="password" type="password" id="user-password-sign" name="user-password-sign">
+      </div>
+      <div class="sing-in-wrapper-input">
+        <button type="submit"><i class="fas fa-clipboard-check"></i>sign in</button>
+        <button type="button">to register<i class="fas fa-sign-in-alt"></i></button>
+
+      </div>
+    </form>
+  </div>
+  <div class="to-register-wrapper">
+    <form method="post" class="to-register">
+      <div class="wrapper-input-to-register">
+        <input type="text" name="user-name">
+        <label>your nickname</label>
+      </div>
+      <div class="wrapper-input-to-register">
+        <input type="email" name="user-email">
+        <label>your email</label>
+      </div>
+      <div class="wrapper-input-to-register">
+        <input type="password" name="user-password">
+        <label>your password</label>
+      </div>
+      <button value="register" name="to-register-btn" type="submit">register oneself</button>
+    </form>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+<script src="../js/remodal.min.js"></script>
+
+<script>
+var xhr = new XMLHttpRequest(),
+    navSearch = document.querySelector('.nav-search'),
+    div_wasFound = document.querySelector('.was-found'),
+    data = [];
+
+xhr.open("GET", "posts.json", false);
+xhr.send();
+
+if (xhr.status != 200) {
+  alert(xhr.status + ": " + xhr.statusText);
+} else {
+   data = JSON.parse(xhr.responseText) ;
+}
+
+
+
+
+
+document.body.addEventListener('keyup' , function () {
+
+  var  div_wasFound_children = div_wasFound.children;
+
+
+
+
+
+  for (var i = 0 ; i < data.length ; i++){
+
+
+      if( data[i].title.indexOf(navSearch.value) !== -1 && navSearch.value !== ""){
+      var node = document.createElement('a') ;
+
+
+      node.innerHTML = data[i].title;
+
+      node.href = `/post/${i}`;
+
+      div_wasFound.appendChild(node)  ;
+
+      console.log(div_wasFound_children[i]);
+    }
+
+  }
+
+
+
+
+
+  var temp_length = div_wasFound_children.length;
+
+  for (var i = 0 ; i < temp_length ; i++){
+
+
+
+    if(div_wasFound_children[0].innerHTML.indexOf(navSearch.value) === -1 || navSearch.value === ""){
+     console.log(123);
+     div_wasFound.removeChild(div_wasFound_children[0]) ;
+    }
+
+  }
+
+  if(div_wasFound.innerHTML === ""){
+    div_wasFound.style.display = 'none';
+  }else div_wasFound.style.display = 'block';
+
+
+
+})
+
+
+// register
+
+var regButton = document.querySelector('.sing-in-wrapper-input button[type="button"]'),
+ signHide = document.querySelector('div[data-remodal-id="modal_check_in"]'),
+ buttonBack = document.querySelector('div[data-remodal-id="modal_check_in"] .back');
+
+regButton.addEventListener('click' , function () {
+
+buttonBack.classList.add('back-active');
+
+signHide.classList.add("active");
+
+})
+
+buttonBack.addEventListener('click' , function () {
+
+buttonBack.classList.remove('back-active');
+
+signHide.classList.remove("active");
+
+})
+
+</script>
 
 
 

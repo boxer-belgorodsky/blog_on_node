@@ -96,16 +96,36 @@
       </g>
     </svg>
   </div>
-  <ul class="nav-list">
-    <li><a href="">news</a></li>
-    <li><a href="">about us</a></li>
-    <li><a href="">subscribe</a></li>
-    <li><a data-remodal-target="modal_check_in" >sign in</a></li>
-  </ul>
-  <form class="nav-form">
-    <input type="" placeholder="search"  class="nav-search" name="">
-    <div class="was-found"></div>
-  </form>
+  <div class="nav-content">
+    <ul class="nav-list">
+
+      <li><a href="">news</a></li>
+      <li><a href="">about us</a></li>
+      <li><a href="">subscribe</a></li>
+      <li><a data-remodal-target="modal_check_in" >sign in</a></li>
+    </ul>
+    <form class="nav-form">
+      <input type="" placeholder="search"  class="nav-search" name="">
+      <div class="was-found"></div>
+    </form>
+    <ul class="nav-list nav-list-user" >
+      <% if (user) { %>
+      <li class="user-link-wrapper">
+        <div class="user-link">
+          <a  href=""><%= result[0].name %></a>
+        </div>
+        <div class="user-link-dropdown">
+            <form class="user-form" method="post">
+              <button href="">change</button>
+              <button name="user-make-post" type="submit"  href="">make post</button>
+              <button name="user-exit" type="submit" class="user-form-exit"
+              >exit</button>
+            </form>
+        </div>
+      </li>
+      <% } %>
+    </ul>
+  </div>
   </nav>
 </header>
 
@@ -132,7 +152,7 @@
   <button class="back"><i class="fas fa-long-arrow-alt-left"></i>back</button>
   <button data-remodal-action="close" class="remodal-close"></button>
   <div class="sign-in-wrapper">
-    <form class="sign-in">
+    <form class="sign-in" method="post">
       <div class="sing-in-wrapper-input">
         <label for="user-email-sign">email</label>
         <input  placeholder="email"  type="email" id="user-email-sign" name="user-email-sign">
@@ -142,9 +162,8 @@
         <input placeholder="password" type="password" id="user-password-sign" name="user-password-sign">
       </div>
       <div class="sing-in-wrapper-input">
-        <button type="submit"><i class="fas fa-clipboard-check"></i>sign in</button>
+        <button type="submit" name="sign-in"><i class="fas fa-clipboard-check"></i>sign in</button>
         <button type="button">to register<i class="fas fa-sign-in-alt"></i></button>
-
       </div>
     </form>
   </div>
@@ -167,13 +186,30 @@
   </div>
 </div>
 
+
+
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+
+
 
 <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
 
 <script src="../js/remodal.min.js"></script>
 
+
+
+
 <script>
+
+
+
+
+
+
+
 var xhr = new XMLHttpRequest(),
     navSearch = document.querySelector('.nav-search'),
     div_wasFound = document.querySelector('.was-found'),
@@ -265,6 +301,22 @@ buttonBack.classList.remove('back-active');
 signHide.classList.remove("active");
 
 })
+
+
+
+// user
+
+if(document.querySelector('.user-link') ){
+  var user_link = document.querySelector('.user-link');
+
+   user_link.addEventListener('click' , function (e) {
+     e.preventDefault();
+     e.stopPropagation();
+     user_link.classList.toggle('user-link-active');
+     return false;
+   })
+
+}
 
 </script>
 

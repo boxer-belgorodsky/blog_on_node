@@ -29,7 +29,7 @@
       <% } else {%>
       <textarea name="message"></textarea>
       <% } %>
-      <button type="submit" class="submit-post">Сделать пост</button>
+      <button type="submit" name="make-post" class="submit-post">Сделать пост</button>
       <div  class="control">
         <% if(id !== false) {%>
           <button name="edit" value="<%= id %>">редактировать</button>
@@ -62,16 +62,53 @@
       </div>
     </div>
     <div class="authorization">
+     <label for="admin-name"></label>
+     <input type="" id="admin-name" name="admin-name">
      <label></label>
-     <input type="" name="">
-     <label></label>
-     <input type="" name="">
+     <input type="password" name="admin-password">
      <button name="authorization" type="submit">Авторизоваться</button>
     </div>
   </form>
 </div>
 
+<script src=""></script>
 
+<script type="text/javascript">
+  var admin_name = document.querySelector('.authorization input[name="admin-name"').value;
+  var admin_password = document.querySelector('.authorization input[name="admin-password"]').value;
+
+ if( <%= admin %>) {
+  setTimeout(function () {
+     document.querySelector('.perspective-form').classList.add('perspective-form-validate');
+  } ,2000)
+
+ }
+
+ document.querySelector('.form').addEventListener('submit' , function () {
+  var xhr = new XMLHttpRequest ();
+
+
+  console.log(123);
+
+  var body = 'name=' + encodeURIComponent(admin_name[0].value) +
+  '&surname=' + encodeURIComponent(admin_password);
+
+  xhr.open("POST", '/admin', false);
+
+
+  xhr.send(body);
+
+    if (xhr.status != 200) {
+      alert(xhr.status + ': ' + xhr.statusText);
+    } else {
+      alert(xhr.responseText);
+    }
+
+
+ })
+
+
+</script>
 
 </body>
 </html>

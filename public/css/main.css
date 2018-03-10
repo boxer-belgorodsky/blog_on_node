@@ -13,6 +13,8 @@ body {
   position: relative; }
 
 header {
+  z-index: 100;
+  position: relative;
   background: #2C3E50; }
   header nav {
     max-width: 1200px;
@@ -21,37 +23,76 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center; }
-    header nav .nav-list {
-      width: 100%;
-      justify-content: flex-end;
+    header nav .nav-content {
       display: flex;
-      color: #FFF;
-      margin: 0;
-      list-style: none; }
-      header nav .nav-list li {
-        margin-right: 60px; }
-        header nav .nav-list li a {
-          display: block;
-          padding: 5px;
-          text-decoration: none;
-          font-size: 20px;
-          color: #FFF; }
-          header nav .nav-list li a:hover {
-            border-bottom: 1px solid  white; }
-    header nav .nav-form .nav-search {
-      padding: 10px;
-      border-radius: 5px;
-      border: none; }
-    header nav .nav-form .was-found {
-      padding: 20px;
-      border: 1px solid black;
-      background: #FFF;
-      border-radius: 5px;
-      display: none;
-      position: absolute;
-      top: 100px; }
-      header nav .nav-form .was-found a {
-        display: block; }
+      width: 100%;
+      justify-content: flex-end; }
+      header nav .nav-content .nav-list.nav-list-user {
+        justify-content: center;
+        padding-left: 60px; }
+        header nav .nav-content .nav-list.nav-list-user li {
+          margin-right: 0; }
+      header nav .nav-content .nav-list {
+        display: flex;
+        color: #FFF;
+        margin: 0;
+        list-style: none; }
+        header nav .nav-content .nav-list .user-link-wrapper {
+          position: relative; }
+          header nav .nav-content .nav-list .user-link-wrapper .user-link {
+            position: relative; }
+            header nav .nav-content .nav-list .user-link-wrapper .user-link + .user-link-dropdown {
+              position: absolute;
+              left: 0;
+              border-radius: 2px;
+              top: 66px;
+              background: rgba(0, 0, 0, 0.9);
+              display: none; }
+              header nav .nav-content .nav-list .user-link-wrapper .user-link + .user-link-dropdown .user-form {
+                display: flex;
+                flex-direction: column; }
+                header nav .nav-content .nav-list .user-link-wrapper .user-link + .user-link-dropdown .user-form button {
+                  color: #FFF;
+                  padding: 20px 70px;
+                  font-size: 20px;
+                  background: transparent;
+                  border: 1px solid transparent;
+                  border-bottom: 2px solid #825794;
+                  transition: .3s;
+                  white-space: nowrap; }
+                  header nav .nav-content .nav-list .user-link-wrapper .user-link + .user-link-dropdown .user-form button:hover {
+                    cursor: pointer;
+                    color: white;
+                    background: #4dadf7; }
+                header nav .nav-content .nav-list .user-link-wrapper .user-link + .user-link-dropdown .user-form button:nth-child(3) {
+                  border-bottom: 1px solid transparent; }
+          header nav .nav-content .nav-list .user-link-wrapper .user-link-active + .user-link-dropdown {
+            display: block; }
+        header nav .nav-content .nav-list li {
+          margin-right: 60px; }
+          header nav .nav-content .nav-list li a {
+            display: block;
+            padding: 5px;
+            text-decoration: none;
+            font-size: 20px;
+            color: #FFF; }
+            header nav .nav-content .nav-list li a:hover {
+              cursor: pointer;
+              border-bottom: 1px solid  white; }
+      header nav .nav-content .nav-form .nav-search {
+        padding: 10px;
+        border-radius: 5px;
+        border: none; }
+      header nav .nav-content .nav-form .was-found {
+        padding: 20px;
+        border: 1px solid black;
+        background: #FFF;
+        border-radius: 5px;
+        display: none;
+        position: absolute;
+        top: 100px; }
+        header nav .nav-content .nav-form .was-found a {
+          display: block; }
 
 div[data-remodal-id="modal_check_in"].active .sign-in-wrapper {
   left: -100%;
@@ -165,6 +206,8 @@ div[data-remodal-id="modal_check_in"] {
             cursor: pointer;
             color: #FFF;
             background: #825794; }
+          div[data-remodal-id="modal_check_in"] .sign-in-wrapper .sign-in .sing-in-wrapper-input button:focus {
+            outline: none; }
         div[data-remodal-id="modal_check_in"] .sign-in-wrapper .sign-in .sing-in-wrapper-input button[type="button"] svg {
           font-size: 24px;
           margin-left: 10px;
@@ -223,12 +266,13 @@ div[data-remodal-id="modal_check_in"] {
         width: 50%;
         margin-top: 25px;
         position: relative;
-        overflow: hidden; }
+        overflow: hidden;
+        transition: 1s; }
         div[data-remodal-id="modal_check_in"] .to-register-wrapper .to-register button[name="to-register-btn"]:hover {
           cursor: pointer;
           box-shadow: 0px 0px 5px black;
           text-shadow: 0px 0px 10px white;
-          transition: text-shadow 1s; }
+          transition: 1s; }
           div[data-remodal-id="modal_check_in"] .to-register-wrapper .to-register button[name="to-register-btn"]:hover::before {
             top: 100%;
             transition: 1s; }
@@ -262,7 +306,25 @@ div[data-remodal-id="modal_check_in"] {
     box-shadow: 0px 0px 20px #2ECC71; }
     .content .content-wrapper .content-item {
       padding: 20px;
-      grid-column: 1/9; }
+      grid-column: 1/9;
+      position: relative; }
+      .content .content-wrapper .content-item .like-it {
+        position: absolute;
+        bottom: 10px;
+        right: 30px; }
+        .content .content-wrapper .content-item .like-it button {
+          border: none;
+          background: transparent;
+          padding: 5px;
+          color: #777;
+          font-size: 20px;
+          transition: .3s; }
+          .content .content-wrapper .content-item .like-it button svg {
+            margin-right: 10px;
+            margin-bottom: 1px; }
+          .content .content-wrapper .content-item .like-it button:hover {
+            color: black;
+            cursor: pointer; }
       .content .content-wrapper .content-item .title-post {
         margin: 0; }
     .content .content-wrapper .sidebar {
@@ -283,9 +345,13 @@ div[data-remodal-id="modal_check_in"] {
             text-decoration: none;
             display: block;
             color: black;
-            padding: 20px; }
+            padding: 20px;
+            transition: .3s; }
+            .content .content-wrapper .sidebar .sidebar-wrapper .sidebar-list li a:hover {
+              background: #4dadf7;
+              color: #FFF; }
           .content .content-wrapper .sidebar .sidebar-wrapper .sidebar-list li .sidebar-list-item-active {
-            background: blue;
+            background: #4dadf7;
             color: #FFF; }
             .content .content-wrapper .sidebar .sidebar-wrapper .sidebar-list li .sidebar-list-item-active:hover {
               border-bottom: 1px solid blue; }
@@ -328,6 +394,8 @@ div[data-remodal-id="modal_check_in"] {
         width: 100%; }
         .perspective-form .form .adminka button.submit-post:hover {
           cursor: pointer; }
+        .perspective-form .form .adminka button.submit-post:focus {
+          outline: none; }
       .perspective-form .form .adminka label {
         margin: 10px 0;
         color: #FFF; }
@@ -361,11 +429,15 @@ div[data-remodal-id="modal_check_in"] {
           border-radius: 10px 0 0 10px; }
           .perspective-form .form .adminka .control button:hover {
             cursor: pointer; }
+          .perspective-form .form .adminka .control button:focus {
+            outline: none; }
         .perspective-form .form .adminka .control button[name="apply"] {
           border-radius: 10px;
           width: 35%;
           margin-left: auto;
           background: #2ECC71; }
+          .perspective-form .form .adminka .control button[name="apply"]:focus {
+            outline: none; }
         .perspective-form .form .adminka .control select {
           border: none;
           border-radius: 0 10px 10px 0; }
@@ -376,10 +448,32 @@ div[data-remodal-id="modal_check_in"] {
       width: calc(100% - 40px);
       left: 0;
       display: flex;
+      align-items: center;
       flex-direction: column;
       transition: 1s;
       transform: translateY(-50%);
       backface-visibility: hidden; }
+      .perspective-form .form .authorization input {
+        width: 90%;
+        border-radius: 5px;
+        padding: 10px;
+        border: 1px solid black;
+        margin-bottom: 10px; }
+      .perspective-form .form .authorization button {
+        margin-top: 10px;
+        font-size: 18px;
+        padding: 10px 20px;
+        background: transparent;
+        color: white;
+        border: 3px solid #825794;
+        transition: .4s;
+        border-radius: 2px; }
+        .perspective-form .form .authorization button:hover {
+          cursor: pointer;
+          background: #825794;
+          color: #FFF; }
+        .perspective-form .form .authorization button:focus {
+          outline: none; }
 
 .perspective-form-validate .form {
   transform: rotateY(180deg); }
